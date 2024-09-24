@@ -52,9 +52,9 @@ for (let c = 0; c < towerbuttons.length; c++) {
     } 
 
     if (coins > 1000-1) {
-      if (tempbutton.id == "monkey") {
+       if (tempbutton.id == "monkey") {
         towers.push("monkey")
-        coincs = coins - 1000
+        coins = coins - 1000 // fixed typo here (im stupid lol)
         ccoins.innerText = "money: "+coins
       }
     }
