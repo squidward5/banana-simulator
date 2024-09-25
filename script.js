@@ -62,9 +62,26 @@ for (let c = 0; c < towerbuttons.length; c++) {
         towers.push("farmer");
         i = i - 200;
         clicks.innerText = "bananas: " + i;
+        console.log("farmer added");
+      }
+    } else if (tempbutton.id == "collector") {
+      if (coins >= 4500) {
+        towers.push("collector");
+        coins = coins - 4500;
+        ccoins.innerText = "money: " + coins;
+        console.log("collector added, coins left: " + coins);
+      }
+    } else if (tempbutton.id == "marketer") {
+      if (coins >= 8000) {
+        towers.push("marketer");
+        coins = coins - 8000;
+        ccoins.innerText = "money: " + coins;
+        console.log("marketer added, coins left: " + coins);
+      }
     }
   };
 }
+
 
 setInterval(() => {
   for (let c = 0; c < towers.length; c++) {
@@ -87,6 +104,20 @@ setInterval(() => {
       i = i + 100;
       clicks.innerText = "bananas: " + i;
     }
+    if (towers[c] === "collector") {
+      console.log("collector generating bananas");
+      i = i + 350;
+      coins = coins + 700
+      clicks.innerText = "bananas: " + i;
+      ccoins.innerText = "money: " + coins;
+    }
+    if (towers[c] === "marketer") {
+      console.log("marketer generating bananas");
+      i = i + 1350;
+      coins = coins + 1600
+      clicks.innerText = "bananas: " + i;
+      ccoins.innerText = "money: " + coins;
+    }
   }
 }, 500);
 
@@ -95,5 +126,4 @@ sell.onclick = () => {
   i = 0;
   clicks.innerText = "bananas: " + i;
   ccoins.innerText = "money: " + coins;
-}
 }
