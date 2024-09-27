@@ -1,7 +1,7 @@
 html,
 body {
   height: 100%;
-  width: 99.4%;
+  width: 99.55%;
   background-color: rgb(16, 16, 16);
   overflow: hidden;
 }
@@ -23,11 +23,28 @@ h2 {
   font-size: 280%;
 }
 
+h3 {
+  color: yellow;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 280%;
+  margin-top: 30px;
+  margin-left: 190px;
+}
+
 p1 {
   color: #ffffff;
   font-family: 'Quicksand', sans-serif;
   font-size: 150%;
   font-weight: 700;
+}
+
+p2 {
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 150%;
+  font-weight: 700;
+  margin-top: 150px;
+  margin-left: -200px;
 }
 
 button {
@@ -48,6 +65,47 @@ button:hover {
 }
 
 button:active {
+  background-color: #232424;
+  transform: scale(0.98);
+}
+
+#settingsmenu {
+  width: 550px;
+  height: 450px;
+  background-color: rgba(29, 29, 27, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+
+#highscorebutton {
+  background-color: #373434;
+  color: #ffffff;
+  font-weight: 600;
+  font-family:'Quicksand',sans-serif;
+  border-radius: 6px;
+  border: none;
+  font-size: 22px;
+  transition: background-color 0.3s, transform 0.15s;
+  height: 5vh;
+  width: 7vh;
+  position: relative;
+  transform-origin: center;
+  margin-left: 5%;
+  margin-top: 25.8%;
+}
+
+#highscorebutton:hover {
+  transform: scale(1.1);
+  background-color: #303434;
+  cursor: pointer;
+}
+
+#highscorebutton:active {
   background-color: #232424;
   transform: scale(0.98);
 }
