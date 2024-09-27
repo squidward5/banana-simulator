@@ -7,9 +7,18 @@
   <link href="style.css" rel="stylesheet" type="text/css" /> 
 </head>
 <body>
+  <div id="settingsmenu" class="container">
+    <h3>settings</h3>
+    <p2 id="highscore1">highscore:</p2>
+    <button id="highscorebutton">ON</button>
+</div>
+
   <center>
     <fieldset>
       <h1>banana simulator</h1>
+      <p1 id="highscore">HIGHSCORE - bananas: 0, money: 0</p1>
+      <br>
+      <br>
       <button id="click">click</button>
       <br>
       <br>
@@ -38,6 +47,10 @@
         
     </fieldset>
   </center>
+  <button id="settingsbutton" style="border: none; background-color: rgba(36, 36, 36, 0.5); position: absolute; top: 25px; right: 25px; padding: 10px; display: inline-flex; justify-content: center; align-items: center; box-sizing: border-box;">
+    <img src="settings.png" alt="Logo" style="width: 40px; height: auto; display: block;">
+</button>
+
 </body>
 <script src="script.js"></script>
 </html>
