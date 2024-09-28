@@ -47,6 +47,15 @@ p2 {
   margin-left: -200px;
 }
 
+p3 {
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 150%;
+  font-weight: 700;
+  margin-top: 230px;
+  margin-left: -135px;
+}
+
 button {
   background-color: #373434;
   color: #ffffff;
@@ -78,8 +87,11 @@ button:active {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.9);
   display: flex;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 #highscorebutton {
@@ -95,8 +107,8 @@ button:active {
   width: 7vh;
   position: relative;
   transform-origin: center;
-  margin-left: 5%;
-  margin-top: 25.8%;
+  margin-left: 2.5%;
+  margin-top: 25.7%;
 }
 
 #highscorebutton:hover {
@@ -106,6 +118,63 @@ button:active {
 }
 
 #highscorebutton:active {
+  background-color: #232424;
+  transform: scale(0.98);
+}
+
+#rebirthbutton {
+  background-color: #373434;
+  color: #ffffff;
+  font-weight: 600;
+  font-family:'Quicksand',sans-serif;
+  border-radius: 6px;
+  border: none;
+  font-size: 22px;
+  transition: background-color 0.3s, transform 0.15s;
+  height: 4.5vh;
+  width: 32vh;
+  position: relative;
+  transform-origin: center;
+  margin-left: -45%;
+  margin-top: 57%;
+  white-space: nowrap;
+}
+
+#rebirthbutton:hover {
+  transform: scale(1.1);
+  background-color: #303434;
+  cursor: pointer;
+}
+
+#rebirthbutton:active {
+  background-color: #232424;
+  transform: scale(0.98);
+}
+
+#rebirthscorebutton {
+  background-color: #373434;
+  color: #ffffff;
+  font-weight: 600;
+  font-family:'Quicksand',sans-serif;
+  border-radius: 6px;
+  border: none;
+  font-size: 22px;
+  transition: background-color 0.3s, transform 0.15s;
+  height: 5vh;
+  width: 7vh;
+  position: relative;
+  transform-origin: center;
+  margin-left: -11.8%;
+  margin-top: 40.5%;
+}
+
+#rebirthscorebutton:hover {
+  transform: scale(1.1);
+  background-color: #303434;
+  cursor: pointer;
+}
+
+#rebirthscorebutton:active {
   background-color: #232424;
   transform: scale(0.98);
 }
