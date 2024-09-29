@@ -31,6 +31,17 @@ h3 {
   margin-left: 190px;
 }
 
+h4 {
+  color: yellow;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 180%;
+  margin-top: 30px;
+  margin-left: 190px;
+  margin: 30px auto;
+  text-align: center;
+
+}
+
 p1 {
   color: #ffffff;
   font-family: 'Quicksand', sans-serif;
@@ -48,6 +59,24 @@ p2 {
 }
 
 p3 {
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 150%;
+  font-weight: 700;
+  margin-top: 230px;
+  margin-left: -135px;
+}
+
+p4 {
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 150%;
+  font-weight: 700;
+  margin-top: 150px;
+  margin-left: -200px;
+}
+
+p5 {
   color: #ffffff;
   font-family: 'Quicksand', sans-serif;
   font-size: 150%;
@@ -86,6 +115,22 @@ button:active {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#resetmenu {
+  width: 650px;
+  height: 200px;
+  background-color: rgba(29, 29, 27, 1);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 13.5%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.9);
   display: flex;
@@ -175,6 +220,102 @@ button:active {
 }
 
 #rebirthscorebutton:active {
+  background-color: #232424;
+  transform: scale(0.98);
+}
+
+#resetbutton {
+  background-color: #373434;
+  color: #ffffff;
+  font-weight: 600;
+  font-family:'Quicksand',sans-serif;
+  border-radius: 6px;
+  border: none;
+  font-size: 22px;
+  transition: background-color 0.3s, transform 0.15s;
+  height: 4.5vh;
+  width: 20vh;
+  position: relative;
+  transform-origin: center;
+  margin-left: -43%;
+  margin-top: 67%;
+  white-space: nowrap;
+}
+
+#resetbutton:hover {
+  transform: scale(1.1);
+  background-color: #303434;
+  cursor: pointer;
+}
+
+#resetbutton:active {
+  background-color: #232424;
+  transform: scale(0.98);
+}
+
+
+
+
+
+
+/* yes and no options */
+
+#yesbutton {
+  background-color: #373434;
+  color: #ffffff;
+  font-weight: 600;
+  font-family:'Quicksand',sans-serif;
+  border-radius: 6px;
+  border: none;
+  font-size: 35px;
+  transition: background-color 0.3s, transform 0.15s;
+  height: 5.1vh;
+  width: 7.5vh;
+  position: relative;
+  transform-origin: center;
+  margin-left: 36%;
+  margin-top: 21%;
+  display: flex;
+  position: absolute;
+}
+
+#yesbutton:hover {
+  transform: scale(1.1);
+  background-color: #303434;
+  cursor: pointer;
+}
+
+#yesbutton:active {
+  background-color: #232424;
+  transform: scale(0.98);
+}
+
+#nobutton {
+  background-color: #373434;
+  color: #ffffff;
+  font-weight: 600;
+  font-family:'Quicksand',sans-serif;
+  border-radius: 6px;
+  border: none;
+  font-size: 35px;
+  transition: background-color 0.3s, transform 0.15s;
+  height: 5.1vh;
+  width: 7.5vh;
+  position: relative;
+  transform-origin: center;
+  margin-left: 49%;
+  margin-top: 21%;
+  white-space: nowrap;
+  position: absolute;
+}
+
+#nobutton:hover {
+  transform: scale(1.1);
+  background-color: #303434;
+  cursor: pointer;
+}
+
+#nobutton:active {
   background-color: #232424;
   transform: scale(0.98);
 }
