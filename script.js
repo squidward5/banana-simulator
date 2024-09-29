@@ -9,9 +9,12 @@ const highscoreButton = document.getElementById("highscorebutton")
 const rebirthscoreButton = document.getElementById("rebirthscorebutton");
 const rebirthButton = document.getElementById("rebirthbutton");
 const rebirths = document.getElementById("rebirths");
-
+const resetButton = document.getElementById("resetbutton");
+const resetMenu = document.getElementById("resetmenu");
 const settingsMenu = document.getElementById("settingsmenu");
 const settingsButton = document.getElementById("settingsbutton");
+const yesButton = document.getElementById("yesbutton");
+const noButton = document.getElementById("nobutton");
 settingsMenu.style.visibility = 'hidden';
 
 //comma format
@@ -29,8 +32,21 @@ let rebirthscore1 = parseInt(localStorage.getItem('rebirthscore1')) || 0;
 let bananaHighScore = parseInt(localStorage.getItem('bananaHighScore')) || 0;
 let moneyHighScore = parseInt(localStorage.getItem('moneyHighScore')) || 0;
 let rebirthscoreSaver = parseInt(localStorage.getItem('rebirthscore1')) || 0;
+
+let bananasaver = parseInt(localStorage.getItem('bananasaver')) || 0;
+let moneysaver = parseInt(localStorage.getItem('moneysaver')) || 0;
+
+i = bananasaver;
+coins = moneysaver;
+
 highscore.innerText = `HIGHSCORE - bananas: ${bananaHighScore}, money: ${moneyHighScore}`;
 rebirths.innerText = `rebirths: ${formatNumber(rebirthscoreSaver)}`;
+
+updateBananas();
+updateMoney();
+updateHighScore();
+updateRebirths();
+
 
 function updateBananas() {
   bananas.innerText = "bananas: " + formatNumber(i);
@@ -39,6 +55,19 @@ function updateBananas() {
 function updateMoney() {
   money.innerText = "money: " + formatNumber(coins);
 }
+
+function saveBananas() {
+  localStorage.setItem('bananasaver', i);
+}
+
+function saveMoney() {
+  localStorage.setItem('moneysaver', coins);
+}
+
+window.addEventListener('beforeunload', () => {
+  saveBananas();
+  saveMoney();
+});
 
 function updateHighScore() {
   if (i > bananaHighScore) {
@@ -65,7 +94,9 @@ clickbutton.onclick = () => {
   i += upgrade + rebirthscoreSaver;
   updateBananas();
   updateHighScore();
+  saveBananas();
 };
+
 
 upgradebutton.onclick = () => {
   if (i >= upgradecost) {
@@ -75,6 +106,7 @@ upgradebutton.onclick = () => {
     updateBananas();
     upgradebutton.innerText = "upgrade (" + formatNumber(upgradecost) + " bananas)";
     updateHighScore();
+    saveBananas();
   } else {
     alert("You don't have enough bananas!");
   }
@@ -88,31 +120,37 @@ for (let c = 0; c < towerbuttons.length; c++) {
       i -= 30;
       updateBananas();
       updateHighScore();
+      saveBananas();
     } else if (tempbutton.id == "stealer" && i >= 500) {
       towers.push("stealer");
       i -= 500;
       updateBananas();
       updateHighScore();
+      saveBananas();
     } else if (tempbutton.id == "monkey" && coins >= 1000) {
       towers.push("monkey");
       coins -= 1000;
       updateMoney();
       updateHighScore();
+      saveBananas();
     } else if (tempbutton.id == "farmer" && i >= 200) {
       towers.push("farmer");
       i -= 200;
       updateBananas();
       updateHighScore();
+      saveBananas();
     } else if (tempbutton.id == "collector" && coins >= 4500) {
       towers.push("collector");
       coins -= 4500;
       updateMoney();
       updateHighScore();
+      saveBananas();
     } else if (tempbutton.id == "marketer" && coins >= 8000) {
       towers.push("marketer");
       coins -= 8000;
       updateMoney();
       updateHighScore();
+      saveBananas();
     }
   };
 }
@@ -122,26 +160,31 @@ setInterval(() => {
     if (towers[c] === "miner") {
       i += 2;
       updateBananas();
+      saveBananas();
     }
     if (towers[c] === "farmer") {
       coins += 30;
       updateMoney();
+      saveBananas();
     }
     if (towers[c] === "monkey") {
       i += 100;
       updateBananas();
+      saveBananas();
     }
     if (towers[c] === "collector") {
       i += 350;
       coins += 700;
       updateBananas();
       updateMoney();
+      saveBananas();
     }
     if (towers[c] === "marketer") {
       i += 1350;
       coins += 1600;
       updateBananas();
       updateMoney();
+      saveBananas();
     }
   }
   updateHighScore();
@@ -240,4 +283,44 @@ rebirthscoreButton.onclick = () => {
     rebirths.style.display = "block";
     disableRebirthscore();
   }
+};
+
+resetButton.onclick = () => {
+  if (resetMenu.style.visibility === 'hidden' || resetMenu.style.visibility === '') {
+      resetMenu.style.visibility = 'visible';
+      resetMenu.style.opacity = 1;
+  } else {
+      resetMenu.style.opacity = 0;
+
+      setTimeout(() => {
+          resetMenu.style.visibility = 'hidden';
+      }, 5);
+  }
+};
+
+noButton.onclick = () => {
+  resetMenu.style.opacity = 0;
+};
+
+yesButton.onclick = () => {
+  resetMenu.style.opacity = 0;
+
+  coins = 0;
+  i = 0;
+  bananaHighScore = 0;
+  moneyHighScore = 0;
+  rebirthscore1 = 0;
+  rebirthscoreSaver = 0;
+
+  localStorage.setItem('bananaHighScore', bananaHighScore);
+  localStorage.setItem('moneyHighScore', moneyHighScore);
+  localStorage.setItem('rebirthscore1', rebirthscore1);
+  localStorage.setItem('bananasaver', 0);
+  localStorage.setItem('moneysaver', 0);
+
+  highscore.innerText = `HIGHSCORE - bananas: 0, money: 0`;
+  rebirths.innerText = `rebirths: ${formatNumber(rebirthscore1)}`;
+  updateBananas();
+  updateMoney();
+  updateHighScore();
 };
