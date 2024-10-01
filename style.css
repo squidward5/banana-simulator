@@ -3,7 +3,11 @@ body {
   height: 100%;
   width: 99.55%;
   background-color: rgb(16, 16, 16);
-  overflow: hidden;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 * {
@@ -39,7 +43,15 @@ h4 {
   margin-left: 190px;
   margin: 30px auto;
   text-align: center;
+}
 
+h5 {
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 80%;
+  margin-top: 150px;
+  margin-left: 390px;
+  margin: 5px auto;
 }
 
 p1 {
@@ -253,11 +265,6 @@ button:active {
   transform: scale(0.98);
 }
 
-
-
-
-
-
 /* yes and no options */
 
 #yesbutton {
@@ -273,7 +280,7 @@ button:active {
   width: 7.5vh;
   position: relative;
   transform-origin: center;
-  margin-left: 36%;
+  margin-left: 37.5%;
   margin-top: 21%;
   display: flex;
   position: absolute;
@@ -303,7 +310,7 @@ button:active {
   width: 7.5vh;
   position: relative;
   transform-origin: center;
-  margin-left: 49%;
+  margin-left: 51%;
   margin-top: 21%;
   white-space: nowrap;
   position: absolute;
