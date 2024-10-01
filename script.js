@@ -16,6 +16,7 @@ const settingsButton = document.getElementById("settingsbutton");
 const yesButton = document.getElementById("yesbutton");
 const noButton = document.getElementById("nobutton");
 settingsMenu.style.visibility = 'hidden';
+rebirths.style.display = "block";
 
 //comma format
 
@@ -46,7 +47,6 @@ updateBananas();
 updateMoney();
 updateHighScore();
 updateRebirths();
-
 
 function updateBananas() {
   bananas.innerText = "bananas: " + formatNumber(i);
@@ -96,7 +96,6 @@ clickbutton.onclick = () => {
   updateHighScore();
   saveBananas();
 };
-
 
 upgradebutton.onclick = () => {
   if (i >= upgradecost) {
@@ -151,6 +150,12 @@ for (let c = 0; c < towerbuttons.length; c++) {
       updateMoney();
       updateHighScore();
       saveBananas();
+    } else if (tempbutton.id == "government" && coins >= 24000) {
+      towers.push("government");
+      coins -= 24000;
+      updateMoney();
+      updateHighScore();
+      saveBananas();
     }
   };
 }
@@ -182,6 +187,13 @@ setInterval(() => {
     if (towers[c] === "marketer") {
       i += 1350;
       coins += 1600;
+      updateBananas();
+      updateMoney();
+      saveBananas();
+    }
+    if (towers[c] === "government") {
+      i += 6500;
+      coins += 7500;
       updateBananas();
       updateMoney();
       saveBananas();
