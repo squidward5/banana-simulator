@@ -7,9 +7,8 @@
   <title>banana simulator</title>
   <link href="style.css" rel="stylesheet" type="text/css" /> 
 </head>
-<body>
-  <h5>Version: 1.6</h5>
 
+<body>
   <div id="settingsmenu" class="container">
     <h3>settings</h3>
     <p2 id="highscore1">highscore:</p2>
@@ -23,12 +22,34 @@
     <button id="resetbutton">reset progress</button>
 </div>
 
-<div id="resetmenu" class="container1">
-  <h4>Are you sure you want to reset your progress? This will reset your highscore, rebirths, bananas, and money.</h4>
-  <br>
-  <button id="yesbutton">yes</button>
-  <button id="nobutton">no</button>
-</div>
+  <div id="updatelogmenu" class="container2">
+    <h6>update log</h6>
+    <h5>Version: 1.7</h5>
+    <h4>• Added an updatelog menu
+      <br>
+      • Added an update log button
+      <br>
+      • Moved the version label to the updatelog menu instead of the top-left
+      <br>
+      • Added a label that follows your mouse cursor when hovering over either the settings button or updatelog button
+      <br>
+      • Added a discord button inside of the updatelog menu
+    </h4>
+
+    <a href="https://discord.gg/8m2fjEREWm" class="discord-button">
+      <img src="discordlogo.png" alt="Logo" style="width: 55px; height: auto;">
+  </a>
+
+  </div>
+
+  <div id="resetmenu" class="container1">
+    <h4>Are you sure you want to reset your progress? This will reset your highscore, rebirths, bananas, and money.</h4>
+    <br>
+    <button id="yesbutton">yes</button>
+    <button id="nobutton">no</button>
+  </div>
+
+
 
   <center>
     <fieldset>
@@ -71,6 +92,13 @@
     <img src="settings.png" alt="Logo" style="width: 40px; height: auto; display: block;">
 </button>
 
+<button id="updatelogbutton" style="border: none; background-color: rgba(36, 36, 36, 0.5); position: absolute; top: 25px; right: 95px; padding: 10px; display: inline-flex; justify-content: center; align-items: center; box-sizing: border-box;">
+  <img src="updatelog.png" alt="Logo" style="width: 40px; height: auto; display: block;">
+</button>
+
 </body>
+
+<div id="tooltip"></div>
+
 <script src="script.js"></script>
 </html>
