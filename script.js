@@ -15,6 +15,10 @@ const settingsMenu = document.getElementById("settingsmenu");
 const settingsButton = document.getElementById("settingsbutton");
 const yesButton = document.getElementById("yesbutton");
 const noButton = document.getElementById("nobutton");
+const updatelogbutton = document.getElementById("updatelogbutton");
+const updatelogMenu = document.getElementById("updatelogmenu");
+const tooltip = document.getElementById("tooltip");
+updatelogMenu.style.visibility = 'hidden';
 settingsMenu.style.visibility = 'hidden';
 rebirths.style.display = "block";
 
@@ -33,6 +37,10 @@ let rebirthscore1 = parseInt(localStorage.getItem('rebirthscore1')) || 0;
 let bananaHighScore = parseInt(localStorage.getItem('bananaHighScore')) || 0;
 let moneyHighScore = parseInt(localStorage.getItem('moneyHighScore')) || 0;
 let rebirthscoreSaver = parseInt(localStorage.getItem('rebirthscore1')) || 0;
+
+//tooltip thingy
+let tooltipTimeout;
+let isTooltipVisible = false;
 
 let bananasaver = parseInt(localStorage.getItem('bananasaver')) || 0;
 let moneysaver = parseInt(localStorage.getItem('moneysaver')) || 0;
@@ -210,10 +218,16 @@ sell.onclick = () => {
   updateHighScore();
 };
 
-//settings stuff
-
 settingsButton.onclick = () => {
   if (settingsMenu.style.visibility === 'hidden' || settingsMenu.style.visibility === '') {
+      if (updatelogMenu.style.visibility === 'visible') {
+          updatelogMenu.style.opacity = 0;
+          updatelogMenu.style.transform = 'translate(-50%, -50%) scale(0.9)';
+          setTimeout(() => {
+              updatelogMenu.style.visibility = 'hidden';
+          }, 300);
+      }
+
       settingsMenu.style.visibility = 'visible';
       settingsMenu.style.opacity = 1;
       settingsMenu.style.transform = 'translate(-50%, -50%) scale(1)';
@@ -223,6 +237,29 @@ settingsButton.onclick = () => {
 
       setTimeout(() => {
           settingsMenu.style.visibility = 'hidden';
+      }, 300);
+  }
+};
+
+updatelogbutton.onclick = () => {
+  if (updatelogMenu.style.visibility === 'hidden' || updatelogMenu.style.visibility === '') {
+      if (settingsMenu.style.visibility === 'visible') {
+          settingsMenu.style.opacity = 0;
+          settingsMenu.style.transform = 'translate(-50%, -50%) scale(0.9)';
+          setTimeout(() => {
+              settingsMenu.style.visibility = 'hidden';
+          }, 300);
+      }
+
+      updatelogMenu.style.visibility = 'visible';
+      updatelogMenu.style.opacity = 1;
+      updatelogMenu.style.transform = 'translate(-50%, -50%) scale(1)';
+  } else {
+      updatelogMenu.style.opacity = 0;
+      updatelogMenu.style.transform = 'translate(-50%, -50%) scale(0.9)';
+
+      setTimeout(() => {
+          updatelogMenu.style.visibility = 'hidden';
       }, 300);
   }
 };
@@ -336,3 +373,51 @@ yesButton.onclick = () => {
   updateMoney();
   updateHighScore();
 };
+
+function showTooltip(event, text) {
+  tooltip.innerText = text;
+  tooltip.style.visibility = "visible";
+  tooltip.style.opacity = 1;
+  tooltip.style.left = `${event.pageX + 10}px`;
+  tooltip.style.top = `${event.pageY + 10}px`;
+  isTooltipVisible = true;
+}
+
+function hideTooltip() {
+  tooltip.style.opacity = 0;
+  setTimeout(() => {
+      tooltip.style.visibility = 'hidden';
+      isTooltipVisible = false;
+  }, 30);
+}
+
+document.addEventListener('mousemove', (event) => {
+  if (isTooltipVisible) {
+      tooltip.style.left = `${event.pageX + 10}px`;
+      tooltip.style.top = `${event.pageY + 10}px`;
+  }
+});
+
+settingsButton.addEventListener('mouseenter', (event) => {
+  clearTimeout(tooltipTimeout);
+  showTooltip(event, "Settings");
+});
+settingsButton.addEventListener('mouseleave', () => {
+  tooltipTimeout = setTimeout(() => {
+      if (!tooltip.matches(':hover') && !updatelogbutton.matches(':hover')) {
+          hideTooltip();
+      }
+  }, 100);
+});
+
+updatelogbutton.addEventListener('mouseenter', (event) => {
+  clearTimeout(tooltipTimeout);
+  showTooltip(event, "Update Log");
+});
+updatelogbutton.addEventListener('mouseleave', () => {
+  tooltipTimeout = setTimeout(() => {
+      if (!tooltip.matches(':hover') && !settingsButton.matches(':hover')) {
+          hideTooltip();
+      }
+  }, 100);
+});
