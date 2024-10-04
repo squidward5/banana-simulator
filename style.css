@@ -114,7 +114,7 @@ p5 {
   padding: 4px 8px;
   border-radius: 4px;
   visibility: hidden;
-  transition: opacity 0.05s ease;
+  transition: opacity 0.2s ease;
   pointer-events: none;
   max-width: 100px;
   white-space: nowrap;
