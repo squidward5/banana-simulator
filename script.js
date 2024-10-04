@@ -3,6 +3,7 @@ const bananas = document.getElementById("clicks");
 const upgradebutton = document.getElementById("upgrade");
 const towerbuttons = document.getElementsByClassName("tower");
 const sell = document.getElementById("sell");
+const sellmoney = document.getElementById("sellmoney");
 const money = document.getElementById("coins");
 const highscore = document.getElementById("highscore");
 const highscoreButton = document.getElementById("highscorebutton")
@@ -15,6 +16,7 @@ const settingsMenu = document.getElementById("settingsmenu");
 const settingsButton = document.getElementById("settingsbutton");
 const yesButton = document.getElementById("yesbutton");
 const noButton = document.getElementById("nobutton");
+const ape = document.getElementById("ape");
 const updatelogbutton = document.getElementById("updatelogbutton");
 const updatelogMenu = document.getElementById("updatelogmenu");
 const tooltip = document.getElementById("tooltip");
@@ -164,7 +166,13 @@ for (let c = 0; c < towerbuttons.length; c++) {
       updateMoney();
       updateHighScore();
       saveBananas();
-    }
+    } else if (tempbutton.id == "ape" && i >= 68500) {
+      towers.push("ape");
+      i -= 68500; // Subtract the cost
+      updateBananas(); // Update the bananas display
+      updateHighScore();
+      saveBananas();
+    }    
   };
 }
 
@@ -206,6 +214,12 @@ setInterval(() => {
       updateMoney();
       saveBananas();
     }
+    if (towers[c] === "ape") {
+      i += 25620;
+      updateBananas();
+      updateMoney();
+      saveBananas();
+    }
   }
   updateHighScore();
 }, 500);
@@ -213,6 +227,14 @@ setInterval(() => {
 sell.onclick = () => {
   coins += i;
   i = 0;
+  updateBananas();
+  updateMoney();
+  updateHighScore();
+};
+
+sellmoney.onclick = () => {
+  i += coins;
+  coins = 0;
   updateBananas();
   updateMoney();
   updateHighScore();
@@ -388,7 +410,7 @@ function hideTooltip() {
   setTimeout(() => {
       tooltip.style.visibility = 'hidden';
       isTooltipVisible = false;
-  }, 30);
+  }, 200);
 }
 
 document.addEventListener('mousemove', (event) => {
