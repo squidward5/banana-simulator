@@ -168,11 +168,18 @@ for (let c = 0; c < towerbuttons.length; c++) {
       saveBananas();
     } else if (tempbutton.id == "ape" && i >= 68500) {
       towers.push("ape");
-      i -= 68500; // Subtract the cost
-      updateBananas(); // Update the bananas display
+      i -= 68500;
+      updateBananas();
       updateHighScore();
       saveBananas();
-    }    
+    } else if (tempbutton.id == "bank" && coins >= 150700) {
+      towers.push("bank");
+      coins -= 150700;
+      updateMoney();
+      saveBananas();
+      updateHighScore();
+    }
+    
   };
 }
 
@@ -216,6 +223,11 @@ setInterval(() => {
     }
     if (towers[c] === "ape") {
       i += 25620;
+      updateBananas();
+      updateMoney();
+      saveBananas();
+    } if (towers[c] === "bank") {
+      coins += 66612;
       updateBananas();
       updateMoney();
       saveBananas();
@@ -394,7 +406,10 @@ yesButton.onclick = () => {
   updateBananas();
   updateMoney();
   updateHighScore();
+
+  location.reload();
 };
+
 
 function showTooltip(event, text) {
   tooltip.innerText = text;
