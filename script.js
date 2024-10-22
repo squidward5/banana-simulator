@@ -18,10 +18,13 @@ const yesButton = document.getElementById("yesbutton");
 const noButton = document.getElementById("nobutton");
 const ape = document.getElementById("ape");
 const updatelogbutton = document.getElementById("updatelogbutton");
+const statsbutton = document.getElementById("statsbutton");
+const statsmenu = document.getElementById("statsmenu");
 const updatelogMenu = document.getElementById("updatelogmenu");
 const tooltip = document.getElementById("tooltip");
 updatelogMenu.style.visibility = 'hidden';
 settingsMenu.style.visibility = 'hidden';
+statsmenu.style.visibility = 'hidden';
 rebirths.style.display = "block";
 
 //comma format
@@ -179,7 +182,6 @@ for (let c = 0; c < towerbuttons.length; c++) {
       saveBananas();
       updateHighScore();
     }
-    
   };
 }
 
@@ -234,7 +236,7 @@ setInterval(() => {
     }
   }
   updateHighScore();
-}, 500);
+}, 700);
 
 sell.onclick = () => {
   coins += i;
@@ -253,7 +255,7 @@ sellmoney.onclick = () => {
 };
 
 settingsButton.onclick = () => {
-  if (settingsMenu.style.visibility === 'hidden' || settingsMenu.style.visibility === '') {
+  if (settingsMenu.style.visibility === 'hidden' || settingsMenu.style.visibility === '' || statsmenu.style.visibility === '') {
       if (updatelogMenu.style.visibility === 'visible') {
           updatelogMenu.style.opacity = 0;
           updatelogMenu.style.transform = 'translate(-50%, -50%) scale(0.9)';
@@ -261,6 +263,14 @@ settingsButton.onclick = () => {
               updatelogMenu.style.visibility = 'hidden';
           }, 300);
       }
+
+      if (statsmenu.style.visibility === 'visible') {
+        statsmenu.style.opacity = 0;
+        statsmenu.style.transform = 'translate(-50%, -50%) scale(0.9)';
+        setTimeout(() => {
+            statsmenu.style.visibility = 'hidden';
+        }, 300);
+    }
 
       settingsMenu.style.visibility = 'visible';
       settingsMenu.style.opacity = 1;
@@ -276,7 +286,7 @@ settingsButton.onclick = () => {
 };
 
 updatelogbutton.onclick = () => {
-  if (updatelogMenu.style.visibility === 'hidden' || updatelogMenu.style.visibility === '') {
+  if (updatelogMenu.style.visibility === 'hidden' || updatelogMenu.style.visibility === '' || statsmenu.style.visibility === '') {
       if (settingsMenu.style.visibility === 'visible') {
           settingsMenu.style.opacity = 0;
           settingsMenu.style.transform = 'translate(-50%, -50%) scale(0.9)';
@@ -284,6 +294,14 @@ updatelogbutton.onclick = () => {
               settingsMenu.style.visibility = 'hidden';
           }, 300);
       }
+
+      if (statsmenu.style.visibility === 'visible') {
+        statsmenu.style.opacity = 0;
+        statsmenu.style.transform = 'translate(-50%, -50%) scale(0.9)';
+        setTimeout(() => {
+            statsmenu.style.visibility = 'hidden';
+        }, 300);
+    }
 
       updatelogMenu.style.visibility = 'visible';
       updatelogMenu.style.opacity = 1;
@@ -297,6 +315,7 @@ updatelogbutton.onclick = () => {
       }, 300);
   }
 };
+
 
 let highscoreEnabled = false;
 highscoreButton.onclick = () => {
@@ -381,6 +400,37 @@ resetButton.onclick = () => {
   }
 };
 
+statsbutton.onclick = () => {
+  if (statsmenu.style.visibility === 'hidden' || updatelogMenu.style.visibility === '' || settingsMenu.style.visibility === '') {
+      statsmenu.style.visibility = 'visible';
+      statsmenu.style.opacity = 1;
+      statsmenu.style.transform = 'translate(-50%, -50%) scale(1)';
+
+      if (settingsMenu.style.visibility === 'visible') {
+        settingsMenu.style.opacity = 0;
+        settingsMenu.style.transform = 'translate(-50%, -50%) scale(0.9)';
+        setTimeout(() => {
+            settingsMenu.style.visibility = 'hidden';
+        }, 300);
+    }
+
+    if (updatelogMenu.style.visibility === 'visible') {
+      updatelogMenu.style.opacity = 0;
+      updatelogMenu.style.transform = 'translate(-50%, -50%) scale(0.9)';
+      setTimeout(() => {
+        updatelogMenu.style.visibility = 'hidden';
+      }, 300);
+  }
+  } else {
+      statsmenu.style.opacity = 0;
+      statsmenu.style.transform = 'translate(-50%, -50%) scale(0.9)';
+      
+      setTimeout(() => {
+          statsmenu.style.visibility = 'hidden';
+      }, 300);
+  }
+};
+
 noButton.onclick = () => {
   resetMenu.style.opacity = 0;
 };
@@ -409,7 +459,6 @@ yesButton.onclick = () => {
 
   location.reload();
 };
-
 
 function showTooltip(event, text) {
   tooltip.innerText = text;
@@ -454,6 +503,19 @@ updatelogbutton.addEventListener('mouseenter', (event) => {
 updatelogbutton.addEventListener('mouseleave', () => {
   tooltipTimeout = setTimeout(() => {
       if (!tooltip.matches(':hover') && !settingsButton.matches(':hover')) {
+          hideTooltip();
+      }
+  }, 100);
+});
+
+statsbutton.addEventListener('mouseenter', (event) => {
+  clearTimeout(tooltipTimeout);
+  showTooltip(event, "Stats");
+});
+
+statsbutton.addEventListener('mouseleave', () => {
+  tooltipTimeout = setTimeout(() => {
+      if (!tooltip.matches(':hover') && !statsbutton.matches(':hover')) {
           hideTooltip();
       }
   }, 100);
